@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/marinela-togoe/Node-Security-Example#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "helmet": "^5.1.0"
   }
 }
