@@ -60,7 +60,7 @@ app.use(passport.session());
 
 function checkLoggedIn(req, res, next) {
   console.log("Current user is:", req.user);
-  const isLoggedIn = req.user; // TODO
+  const isLoggedIn = req.isAuthenticated() && req.user;
   if (!isLoggedIn) {
     return res.status(401).json({
       error: "You must log in!",
@@ -85,7 +85,10 @@ app.get("/auth/google/callback",
  }
 );
 
-app.get ("/auth/logout", (req, res) => {});
+app.get ("/auth/logout", (req, res) => {
+  req.logout(); // Removes req.user and clears any logged in session
+  return res.redirect("/");
+});
 
 app.get("/secret",checkLoggedIn, (req, res) => {
   return res.send("The most precious secret you can have!");
